@@ -1,38 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand h3 p-2 px-5" href="/">App Name</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav_content" aria-controls="nav_content" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse px-5" id="nav_content">
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item ml-2" id="home">
-            <a href="/" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item ml-2" id="contact">
-            <a href='/about-us' class="nav-link">About Us</a>
-        </li>
-        <li class="nav-item ml-2">
-            <button href='/register' class="btn btn-md btn-danger" >Login/Register</button>
-        </li>
-    </ul>
-    </div>
-    </div>
-</nav>
+{% extends 'base.html' %}
+{% block content %}
 <div class="container text-dark mt-5 pt-5">
     <div class="row">
         <div class="col-lg-6">
@@ -54,15 +21,4 @@
         </div>
     </div>
 </div>
-<footer class="footer fixed-bottom bg-dark text-light">
-    <div class="d-flex py-3 align-items-center justify-content-center bg-danger">
-        <p class="h5">Minimizing your efforts!!</p>
-    </div>
-</footer>
-<script>
-    var active='{{ active_class|safe }}';
-    var bgcolor= '#dc3545';
-    document.getElementById(active).classList.add('active');
-</script>
-</body>
-</html>
+{% endblock %}
