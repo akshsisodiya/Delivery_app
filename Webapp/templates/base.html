@@ -25,9 +25,18 @@
         <li class="nav-item ml-2" id="contact">
             <a href='/about-us' class="nav-link">About Us</a>
         </li>
+            {% if user.is_authenticated %}
         <li class="nav-item ml-2">
-            <a href="/login"><button class="btn btn-md btn-danger" >Login/Register</button></a>
+            <form action="/user/logout/" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger"> Logout</button>
+            </form>
         </li>
+            {% else %}
+        <li class="nav-item ml-2">
+            <a href="/user/login"><button class="btn btn-md btn-danger" >Login/Register</button></a>
+        </li>
+            {% endif %}
     </ul>
     </div>
     </div>

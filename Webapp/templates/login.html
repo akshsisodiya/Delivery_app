@@ -30,8 +30,18 @@
         </div>
           <button class="btn btn-danger btn-block" type="submit">Login</button>
       </form>
-        <a href="/register">Don't have account? Register.</a>
+        <a href="/user/register">Don't have account? Register.</a>
     </div>
+    {% if messages %}
+        <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+            {% for msg in messages %}
+            <strong>{{ msg }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {% endfor %}
+        </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
