@@ -8,8 +8,11 @@ from .models import CardView
 
 @login_required(login_url='/user/login')
 def index(request):
-    data = CardView('Profile', 'aksh004.jpg', 'Goto your profile')
-    return render(request, 'user_index.html', {'data': [data], 'active_class':'home'})
+    profile = CardView('Profile', 'aksh004.jpg', 'Goto your profile')
+    send = CardView('Send', 'send.jpg', 'Quick proccess to send your parcel')
+    request_p = CardView('Request parcel', 'request.jpg', 'Request something from your friendlist')
+    tracking = CardView('Track Parcel', 'tracking.jpg', 'Track current location of your parcels')
+    return render(request, 'user_index.html', {'data': [send,request_p,tracking,profile], 'active_class':'home'})
 
 def profile(request):
     return render(request, 'user_profile.html')
