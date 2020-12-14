@@ -4,10 +4,15 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import CardView
 
 @login_required(login_url='/user/login')
 def index(request):
-    return render(request, 'user_index.html')
+    data = CardView('Profile', 'aksh004.jpg', 'Goto your profile')
+    return render(request, 'user_index.html', {'data': [data], 'active_class':'home'})
+
+def profile(request):
+    return render(request, 'user_profile.html')
 
 def login_page(request):
     if request.user.is_authenticated:
@@ -41,3 +46,29 @@ def logout_user(request):
         return redirect('/')
     else:
         raise Http404("not exist")
+
+# takes email for reseting password
+def password_reset(request):
+    return render(request, 'password_reset.html')
+
+# shows message that email has been sent
+def password_reset_done(request):
+    return render(request, 'password_reset_done.html')
+
+# takes new password
+def password_reset_confirm(request):
+    if request.method == 'POST':
+        return redirect('password_reset_message')
+    else:
+        return render(request, 'password_reset_confirm.html')
+
+# shows message that password changed
+def password_reset_message(request):
+    return render(request, 'password_reset_message.html')
+
+def indexdata(obj,title,img,disc):
+    obj = CardView
+    obj.title = title
+    obj.img = img
+    obj.discription = disc
+    return obj

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+<div class="container">
+    <div class="row" style="height:75vh;">
+        <div class="col-lg-4">
+            <div class="card bg-dark text-light" style="border:none;">
+                <div class="card-header bg-danger">
+                    <p class="h4">Profile</p>
+                </div>
+                <div class="card-img py-3">
+                    <img src="{% static 'img/aksh004.jpg' %}" class="profile-img">
+                </div>
+                <div class="card-body">
+                    <div class="card-title text-center">
+                        <p class="h3">Antariksh Sisodiya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

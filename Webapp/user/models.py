@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class CardView:
+    def __init__(self,title,img,description):
+        self.title=title
+        self.img=img
+        self.description=description

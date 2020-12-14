@@ -9,8 +9,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
+<div class="flex-wrapper">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand h3 p-2 px-5" href="/">App Name</a>
@@ -19,9 +21,15 @@
     </button>
     <div class="collapse navbar-collapse px-5" id="nav_content">
         <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+        <li class="nav-item ml-2" id="home">
+            <a href="/user" class="nav-link">Home</a>
+        </li>
+            {% else %}
         <li class="nav-item ml-2" id="home">
             <a href="/" class="nav-link">Home</a>
         </li>
+            {% endif %}
         <li class="nav-item ml-2" id="contact">
             <a href='/about-us' class="nav-link">About Us</a>
         </li>
@@ -29,7 +37,7 @@
         <li class="nav-item ml-2">
             <form action="/user/logout/" method="post">
                 {% csrf_token %}
-                <button class="btn btn-danger"> Logout</button>
+                <button class="btn btn-danger">Logout</button>
             </form>
         </li>
             {% else %}
@@ -43,7 +51,7 @@
 </nav>
 {% block content %}
 {% endblock %}
-<footer class="footer fixed-bottom bg-dark text-light">
+<footer class="footer bg-dark text-light">
     <div class="d-flex py-3 align-items-center justify-content-center bg-danger">
         <p class="h5">Minimizing your efforts!!</p>
     </div>
@@ -53,5 +61,6 @@
     var bgcolor= '#dc3545';
     document.getElementById(active).classList.add('active');
 </script>
+</div>
 </body>
 </html>
