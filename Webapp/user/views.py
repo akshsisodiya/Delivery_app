@@ -17,6 +17,10 @@ def index(request):
 def profile(request):
     return render(request, 'user_profile.html')
 
+@login_required(login_url='/user/login')
+def edit_profile(request):
+    return render(request,'edit_profile.html')
+
 def send_parcel(request):
     return render(request, 'send_parcel.html')
 
@@ -52,22 +56,3 @@ def logout_user(request):
         return redirect('/')
     else:
         raise Http404("not exist")
-
-# takes email for reseting password
-def password_reset(request):
-    return render(request, 'password_reset.html')
-
-# shows message that email has been sent
-def password_reset_done(request):
-    return render(request, 'password_reset_done.html')
-
-# takes new password
-def password_reset_confirm(request):
-    if request.method == 'POST':
-        return redirect('password_reset_message')
-    else:
-        return render(request, 'password_reset_confirm.html')
-
-# shows message that password changed
-def password_reset_message(request):
-    return render(request, 'password_reset_message.html')

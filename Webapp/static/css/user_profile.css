@@ -1,7 +1,7 @@
 .profile-img {
   border-radius: 50%;
-  width: 30vw;
-  height: 30vw;
+  width: 30vh;
+  height: 30vh;
   object-fit: cover;
   margin: auto;
   display: block;
