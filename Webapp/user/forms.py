@@ -14,3 +14,6 @@ class CreateUserForm(UserCreationForm):
             'email':forms.TextInput(attrs={'class':'form-control'}),
             'username':forms.TextInput(attrs={'class':'form-control'})
         }
+
+class send_parcel():
+    pass

@@ -1,29 +1,27 @@
-{% extends 'base.html' %} {% block content %}
-{% load static %}
-{% static "img" as img %}
-<link rel="stylesheet" href="{% static 'css/user_index.css' %}">
-<div class="container-fluid px-5">
-    <div class="row px-3">
-        {% for card in data %}
-        <div class="col-lg-3 p-5">
-            <a href="profile/" class="text-dark" style="text-decoration:none;">
-                <div class="card shadow-lg bg-light">
-                    <div class="card-img">
-                        <img src="{{img}}/{{card.img}}" alt="" class="card-img">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title text-center">
-                            <p class="h2">{{ card.title }}</p>
-                        </div>
-                        <div class="card-text">
-                            <p class="h6 text-center">{{ card.description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
+{% extends 'base.html' %} {% block content %} {% load static %} {% static "img" as img %}
+<link rel="stylesheet" href="{% static 'css/user_index.css' %}" />
+<div class="container-fluid mx-auto px-5">
+  <div class="row justify-content-center">
+    {% for card in data %}
+    <div class="col-lg-3 py-3">
+      <a href="{{card.link}}" class="text-dark" style="text-decoration: none">
+        <div class="card shadow-lg">
+          <div class="mt-4">
+            <img src="{{img}}/{{card.img}}" alt="" class="card-img" />
+          </div>
+          <div class="card-body">
+            <div class="card-title text-center">
+              <p class="h2">{{ card.title }}</p>
+            </div>
+            <div class="card-text">
+              <p class="h6 text-center">{{ card.description }}</p>
+            </div>
+          </div>
         </div>
-        {% endfor %}
+      </a>
     </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}

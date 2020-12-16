@@ -1,8 +1,17 @@
-.profile-img{
-    border-radius:50%;
-    width:30vh;
-    height:30vh;
-    object-fit:cover;
-    margin:auto;
-    display:block;
+.profile-img {
+  border-radius: 50%;
+  width: 30vw;
+  height: 30vw;
+  object-fit: cover;
+  margin: auto;
+  display: block;
+}
+
+.username {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-details {
+  margin: auto;
 }

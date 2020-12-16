@@ -4,18 +4,21 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import CardView
+from . import get_data
+from django.core.mail import send_mail
 
 @login_required(login_url='/user/login')
 def index(request):
-    profile = CardView('Profile', 'aksh004.jpg', 'Goto your profile')
-    send = CardView('Send', 'send.jpg', 'Quick proccess to send your parcel')
-    request_p = CardView('Request parcel', 'request.jpg', 'Request something from your friendlist')
-    tracking = CardView('Track Parcel', 'tracking.jpg', 'Track current location of your parcels')
-    return render(request, 'user_index.html', {'data': [send,request_p,tracking,profile], 'active_class':'home'})
+    # send_mail('Test Mail', 'hello user', 'akshbusinessemail@gmail.com', ['sisodiyaaksh@gmail.com'])
+    data = get_data.index_data()
+    return render(request, 'user_index.html', {'data': data, 'active_class':'home'})
 
+@login_required(login_url='/user/login')
 def profile(request):
     return render(request, 'user_profile.html')
+
+def send_parcel(request):
+    return render(request, 'send_parcel.html')
 
 def login_page(request):
     if request.user.is_authenticated:
@@ -68,10 +71,3 @@ def password_reset_confirm(request):
 # shows message that password changed
 def password_reset_message(request):
     return render(request, 'password_reset_message.html')
-
-def indexdata(obj,title,img,disc):
-    obj = CardView
-    obj.title = title
-    obj.img = img
-    obj.discription = disc
-    return obj
