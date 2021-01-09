@@ -1,101 +1,86 @@
-{% extends 'base.html' %} {% block content %}
-<div class="container text-dark">
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div class="container text-dark needs-validation">
   <div class="p-5 justify-content-center">
     <div
       class="p-3 d-flex flex-column border border-danger rounded align-middle"
-    > 
-      <form action="/user/register/" method="post">
+    >
+      <form action="" method="post">
         {% csrf_token %}
         <div class="row">
           <div class="form-group col-lg-6">
             <label for="first_name">First Name</label>
-<!--            <input-->
-<!--              type="text"-->
-<!--              class="form-control"-->
-<!--              id="first_name"-->
-<!--              placeholder="First Name"-->
-<!--              name="fname"-->
-<!--            />-->
+
             {{ form.first_name }}
           </div>
           <div class="form-group col-lg-6">
             <label for="last_name">Last Name</label>
-<!--            <input-->
-<!--              type="text"-->
-<!--              class="form-control"-->
-<!--              id="last_name"-->
-<!--              placeholder="Last Name"-->
-<!--              name="lname"-->
-<!--            />-->
+
             {{ form.last_name }}
           </div>
         </div>
         <div class="row">
           <div class="form-group col-lg-6">
-            <label for="email">Email</label>
-<!--            <input-->
-<!--              type="email"-->
-<!--              class="form-control"-->
-<!--              id="email"-->
-<!--              placeholder="Email"-->
-<!--              name="email"-->
-<!--            />-->
-            {{ form.email }}
+            <label>Username</label>
+
+            {{ form.username }}
           </div>
           <div class="form-group col-lg-6">
-            <label for="mobile">Mobile Number</label>
-<!--            <input-->
-<!--              type="tel"-->
-<!--              class="form-control"-->
-<!--              id="mobile"-->
-<!--              placeholder="Mobile Number"-->
-<!--              name="number"-->
-<!--            />-->
-            {{ form.username }}
+            <label for="email">Email</label>
+
+            {{ form.email }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-6">
+            <label>Primary Number</label>
+            {{ form2.number1 }}
+          </div>
+          <div class="form-group col-lg-6">
+            <label>Alternative Number</label>
+            {{ form2.number2 }}
           </div>
         </div>
         <div class="row">
           <div class="form-group col-lg-6">
             <label for="password">Password</label>
-<!--            <input-->
-<!--              type="password"-->
-<!--              class="form-control"-->
-<!--              id="password"-->
-<!--              placeholder="Password"-->
-<!--              name="password"-->
-<!--            />-->
             {{ form.password1 }}
           </div>
           <div class="form-group col-lg-6">
             <label for="conpassword">Confirm Password</label>
-<!--            <input-->
-<!--              type="password"-->
-<!--              class="form-control"-->
-<!--              id="conpassword"-->
-<!--              placeholder="Confirm Password"-->
-<!--              name="cpassword"-->
-<!--            />-->
             {{ form.password2 }}
           </div>
         </div>
-          <button class="btn btn-danger btn-block" type="submit">Submit</button>
+        <button class="btn btn-danger btn-block" type="submit">Submit</button>
       </form>
       <a href="/user/login">Already have account? Login.</a>
     </div>
-  {% if form.errors %}
-  {% for field in form %}
-  {% for error in field.errors %}
-  <div class="alert alert-danger">
-    <strong>{{ error|escape }}</strong>
-  </div>
-  {% endfor %}
-  {% endfor %}
-  {% for error in form.non_field_errors %}
-  <div class="alert alert-danger">
-    <strong>{{ error|escape }}</strong>
-  </div>
-  {% endfor %}
-  {% endif %}
+    {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+    <div class="alert alert-danger">
+      <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">
+      <strong>{{ error|escape }}</strong>
+    </div>
+    {% endfor %} {% endif %} {% if messages %}
+    <div
+      class="alert alert-danger alert-dismissible fade show mt-5"
+      role="alert"
+    >
+      {% for msg in messages %}
+      <strong>{{ msg }}</strong>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 </div>
+<script src="{% static 'js/form_validation.js' %}"></script>
 {% endblock %}

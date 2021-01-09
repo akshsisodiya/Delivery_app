@@ -15,3 +15,9 @@
 .profile-details {
   margin: auto;
 }
+
+.img-text {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 15%;
+}

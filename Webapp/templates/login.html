@@ -1,13 +1,13 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load socialaccount %}
 <div class="container text-dark">
-  <div class="p-5 justify-content-center">
+  <div class="m-auto" style="width:50vh;">
     <div
       class="p-3 d-flex flex-column border border-danger rounded align-middle"
     >
       <form action="/user/login/" method="post">
         {% csrf_token %}
-        <div class="row">
-          <div class="form-group col-lg-6">
+        <div class="p-3">
+          <div class="form-group ">
             <label for="user_id">User Id</label>
             <input
               type="text"
@@ -17,7 +17,7 @@
               name="user_id"
             />
           </div>
-          <div class="form-group col-lg-6">
+          <div class="form-group">
             <label for="password">Password</label>
             <input
               type="password"
@@ -27,11 +27,13 @@
               name="password"
             />
           </div>
+            <button class=" btn btn-danger btn-block" type="submit">Login</button>
         </div>
-          <button class="btn btn-danger btn-block" type="submit">Login</button>
       </form>
-             <a href="/user/register" class="pt-2">Don't have account? Register.</a>
-             <a href="/user/password-reset" class="pt-2">Forgot Password?</a>
+             <a href="/user/register" class="px-3">Don't have account? Register.</a>
+             <a href="/user/password-reset" class="py-2 px-3">Forgot Password?</a>
+             <hr>
+             <a href="{% provider_login_url 'google' %}"><i class="fa fa-google 3x" aria-hidden="true"></i></a>
 
     </div>
     {% if messages %}
