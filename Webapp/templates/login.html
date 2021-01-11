@@ -30,8 +30,8 @@
             <button class=" btn btn-danger btn-block" type="submit">Login</button>
         </div>
       </form>
-             <a href="/user/register" class="px-3">Don't have account? Register.</a>
-             <a href="/user/password-reset" class="py-2 px-3">Forgot Password?</a>
+             <a href="{% url 'register' %}" class="px-3">Don't have account? Register.</a>
+             <a href="{% url 'password_reset'%}" class="py-2 px-3">Forgot Password?</a>
              <hr>
              <a href="{% provider_login_url 'google' %}"><i class="fa fa-google 3x" aria-hidden="true"></i></a>
 

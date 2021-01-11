@@ -5,10 +5,13 @@
     <div class="col-lg-4">
       <div class="card-img py-3" id="image_container">
         <img src="{% static 'img/aksh004.jpg' %}" class="profile-img" id="profile_img_display" />
+        {% if detail.username == user %}
         <div class="middle" id="text_container">
           <p class="h6 img_text" id="id_text">Edit</p>
         </div>
+        {% endif %}
       </div>
+      {% if detail.username == user %}
       <form method="post" enctype="multipart/form-data">
         <input type="file" class="d-none" id="profile_image" name="profile_image" onchange="readURL(this)" />
       </form>
@@ -16,10 +19,12 @@
         <i type="button" class="fa fa-check-circle fa-2x" style="width: 50px" aria-hidden="true" id="confirm"></i>
         <i type="button" class="fa fa-times-circle fa-2x" type="button" aria-hidden="true" id="cancel"></i>
       </div>
+      {% endif%}
     </div>
     <div class="col-lg-6 my-auto">
       <div class="username dropdown">
-        <p class="h3 ml-3 text-left">{{ detail.name }}</p>
+        <p class="h3 ml-3 text-left">{{ detail.username.first_name }} {{detail.username.last_name}}</p>
+        {% if detail.username == user %}
         <i class="my-auto ml-1 mr-5 fas fa-user-edit" role="button" id="dropdownMenuLink" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
         </i>
@@ -27,8 +32,29 @@
           <a class="dropdown-item" href="/user/edit-profile">Edit profile</a>
           <a class="dropdown-item" href="#">Change password</a>
         </div>
+        {% else %}
+        {% if is_friend %}
+        <form method="post" action="" id="friend_form">
+          {% csrf_token %}
+            <span class="text-danger" title="Remove Friend" id="friend_submit" role="button">
+        <i class="my-auto ml-1 mr-5 fas fa-user-times fa-2x"
+           aria-haspopup="true" aria-expanded="false" id="friend_icon">
+        </i>
+          </span>
+        </form>
+        {% else %}
+        <form method="post" action="" id="friend_form">
+          {% csrf_token %}
+          <span class="text-success" title="Add Friend" id="friend_submit" role="button">
+        <i class="my-auto ml-1 mr-5 fas fa-user-plus fa-2x"
+           aria-haspopup="true" aria-expanded="false" id="friend_icon">
+        </i>
+        </span>
+        </form>
+        {% endif %}
+        {% endif %}
       </div>
-      <p class="ml-3 h6">@{{ user.username }}</p>
+      <p class="ml-3 h6">@{{ detail.username }}</p>
       <br />
       <div class="row text-center">
         <div class="col-4 border-right">
@@ -56,15 +82,45 @@
         </div>
         <div class="d-flex mx-4 mt-3">
           <i class="fa fa-map-marker my-auto" aria-hidden="true"></i>
-          {% if detail.address != ', , -, , ' %}
-          <p class="h6 px-2 ml-2 my-auto">{{ detail.address }}</p>
+          {% if detail.address1 != '' %}
+          <p class="h6 px-2 ml-2 my-auto">{{ detail.address1 }}, {{ detail.address2}}, {{ detail.city}}, {{ detail.country}}</p>
           {% else %}
-          <a href="/user/edit-profile" class="h6 px-2 ml-2 my-auto">Edit Address</a>
+            {% if detail.username == user %}
+              <a href="{% url 'edit_profile' %}" class="h6 px-2 ml-2 my-auto">Edit Address</a>
+            {% else %}
+              <p class="h6">Address not available</p>
+            {% endif %}
           {% endif %}
         </div>
       </div>
     </div>
   </div>
 </div>
+{% if detail.username == user %}
 <script src="{% static 'js/user_profile.js' %}"></script>
+{% else %}
+<script>
+  const friend_submit = document.getElementById("friend_submit")
+  const friend_icon = document.getElementById("friend_icon")
+  $("#friend_submit").click(function(){
+    $.post("",{csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+    function(){
+    if (friend_submit.classList == "text-success"){
+      $("#friend_submit").removeClass("text-success")
+      $("#friend_submit").addClass("text-danger")
+      $("#friend_icon").removeClass("fa-user-plus")
+      $("#friend_icon").addClass("fa-user-times")
+
+    }
+    else if (friend_submit.classList == "text-danger"){
+      $("#friend_submit").removeClass("text-danger")
+      $("#friend_submit").addClass("text-success")
+      $("#friend_icon").removeClass("fa-user-times")
+      $("#friend_icon").addClass("fa-user-plus")
+    }
+    });
+  })
+
+</script>
+{%endif%}
 {% endblock %}

@@ -1,5 +1,7 @@
 {% load static %}
-<!DOCTYPE html>
+{% url 'index' as index %}
+{% url 'home' as home%}
+{% url 'about-us' as about_us%}
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +20,7 @@
 <div class="flex-wrapper">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-        <a class="navbar-brand h3 p-2 px-5" href="/">App Name</a>
+        <a class="navbar-brand h3 p-2 px-5" href="{{ home }}">App Name</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav_content" aria-controls="nav_content" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,26 +28,26 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
         <li class="nav-item ml-2" id="home">
-            <a href="/user" class="nav-link">Home</a>
+            <a href="{{ index }}" class="nav-link {% if request.path == index %}active{%endif%}">Home</a>
         </li>
             {% else %}
         <li class="nav-item ml-2" id="home">
-            <a href="/" class="nav-link">Home</a>
+            <a href="{{ home }}" class="nav-link {% if request.path == home %}active{% endif %}">Home</a>
         </li>
             {% endif %}
         <li class="nav-item ml-2" id="contact">
-            <a href='/about-us' class="nav-link">About Us</a>
+            <a href="{{ about_us }}" class="nav-link {% if request.path == about_us %}active{% endif %}">About Us</a>
         </li>
             {% if user.is_authenticated %}
         <li class="nav-item ml-2">
-            <form action="/user/logout/" method="post">
+            <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-danger">Logout</button>
             </form>
         </li>
             {% else %}
         <li class="nav-item ml-2">
-            <a href="/user/login"><button class="btn btn-md btn-danger" >Login/Register</button></a>
+            <a href="{% url 'login'%}"><button class="btn btn-md btn-danger" >Login/Register</button></a>
         </li>
             {% endif %}
     </ul>

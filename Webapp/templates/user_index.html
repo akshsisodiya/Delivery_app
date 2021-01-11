@@ -4,7 +4,7 @@
   <div class="row justify-content-center">
     {% for card in data %}
     <div class="col-lg-3 py-3">
-      <a href="{{card.link}}" class="text-dark" style="text-decoration: none">
+      <a href="{% url card.link %}" class="text-dark" style="text-decoration: none">
         <div class="card shadow-lg">
           <div class="mt-4">
             <img src="{{img}}/{{card.img}}" alt="" class="card-img" />

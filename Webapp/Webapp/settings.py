@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'panchayat',
 ]
 
 SITE_ID = 2
@@ -82,7 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Webapp.wsgi.application'
-
+ASGI_APPLICATION = 'Webapp.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

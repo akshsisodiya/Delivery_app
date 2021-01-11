@@ -1,9 +1,9 @@
-from django.shortcuts import render, HttpResponse, redirect, Http404
+from django.shortcuts import render, HttpResponse, redirect, Http404, get_object_or_404
 from django.http import JsonResponse
 from .forms import CreateUserForm,UserDetailsForm, SendParcel
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import login,logout
-from .models import UserDetail
+from .models import UserDetail, Friend
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
@@ -13,22 +13,13 @@ from django.core.mail import send_mail
 
 @login_required(login_url='/user/login')
 def index(request):
-    # send_mail('Test Mail', 'hello user', 'akshbusinessemail@gmail.com', ['sisodiyaaksh@gmail.com'])
     data = get_data.index_data()
     return render(request, 'user_index.html', {'data': data, 'active_class':'home'})
-
 
 @login_required(login_url='/user/login')
 def profile(request):
     details = UserDetail.objects.get(username = request.user)
-    personal_details = {
-        'number1': details.number1,
-        'number2': details.number2,
-        'name': User.get_full_name(request.user),
-        'address': f"{details.address1}, {details.address2}, {details.city}-{details.zip}, {details.state}, {details.country}",
-    }
-    return render(request, 'user_profile.html', {'detail':personal_details})
-
+    return render(request, 'user_profile.html', {'detail':details})
 
 @login_required(login_url='/user/login')
 def edit_profile(request):
@@ -133,6 +124,18 @@ def get_user(request):
             data = {'found':False}
     return JsonResponse(data)
 
+def user_profile_show(request, username):
+    user = get_object_or_404(User, username=username)
+    f = Friend.objects.get(person=request.user)
+    if request.method == 'POST':
+        if user in f.friends.all():
+            f.friends.remove(user)
+        else:
+            f.friends.add(user)
+
+    detail = UserDetail.objects.get(username = user)
+    is_friend = True if user in f.friends.all() else False
+    return render(request, 'user_profile.html', {'detail':detail, 'is_friend':is_friend})
 
 def requset_parcel(request):
     msg = {
