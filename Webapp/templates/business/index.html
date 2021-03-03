@@ -1,0 +1,51 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block content %}
+<div class="vertical-nav text-dark bg-white" id="sidebar">
+    <div class="py-4 px-3 mb-4 bg-light">
+        <div class="media d-flex align-items-center">
+            <a class="navbar-brand h1" href="{{ home }}">FastAF</a>
+        </div>
+    </div>
+    <p class="text-muted font-weight-bold text-uppercase px-3 small pb-4 mb-0">dashboard</p>
+    <ul class="nav flex-column mb-0">
+        <li class="nav-item">
+            <a href="{{ index }}"
+                class="nav-link {% if request.path == index %}active text-light bg-secondary{% else %}text-dark{% endif %}">
+                Home
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ total_delivery }}"
+                class="nav-link {% if request.path == total_delivery %}active text-light bg-secondary{% else %}text-dark{% endif %}">Total
+                delivery</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ panding_delivery }}"
+                class="nav-link {% if request.path == panding_delivery %}active text-light bg-secondary{% else %}text-dark{% endif %}">Panding
+                delivery</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ panding_requests }}"
+                class="nav-link {% if request.path == panding_requests %}active text-light bg-secondary{% else %}text-dark{% endif %}">Panding
+                requests</a>
+        </li>
+    </ul>
+    <p class="text-muted font-weight-bold text-uppercase px-3 small py-4 mb-0">costumer</p>
+    <ul class="nav flex-column mb-0">
+        <li class="nav-item">
+            <a href="{{ search }}"
+                class="nav-link {% if request.path == search %}active text-light bg-secondary{% else %}text-dark{% endif %}">Search</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ chat }}"
+                class="nav-link {% if request.path == chat %}active text-light bg-secondary{% else %}text-dark{% endif %}">Chat</a>
+        </li>
+    </ul>
+</div>
+<div class="content" id="content">
+    <div class="header bg-dark">
+        <button id="sliderCollapse" class="btn btn-white"><i class="fa fa-bars mr-2"></i></button>
+    </div>
+</div>
+{% endblock %}

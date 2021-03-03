@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% block head %}{% endblock %}
 </head>
 <body>
 <div class="flex-wrapper">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-        <a class="navbar-brand h3 p-2 px-5" href="{{ home }}">App Name</a>
+        <a class="navbar-brand h3 p-2 px-5" href="{{ home }}">FastAF</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav_content" aria-controls="nav_content" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -61,11 +62,7 @@
         <p class="h5">Minimizing your efforts!!</p>
     </div>
 </footer>
-<script>
-    var active='{{ active_class|safe }}';
-    var bgcolor= '#dc3545';
-    document.getElementById(active).classList.add('active');
-</script>
 </div>
+{% block footer %}{% endblock%}
 </body>
 </html>

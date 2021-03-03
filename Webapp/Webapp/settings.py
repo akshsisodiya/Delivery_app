@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'panchayat',
+    'business',
+    'channels',
 ]
 
 SITE_ID = 2

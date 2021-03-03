@@ -122,6 +122,7 @@ def get_user(request):
             data = {'found':True,'data':user_found}
         else:
             data = {'found':False}
+    print(data)
     return JsonResponse(data)
 
 def user_profile_show(request, username):

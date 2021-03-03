@@ -4,3 +4,39 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.search-user{
+    position: relative;
+}
+
+.search-result-container {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 7px 10px lightgray;
+}
+.search-result {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid rgb(228, 225, 225);
+}
+.search-result > span {
+  margin: 0;
+  margin-left:10px;
+  color: var(--dark);
+}
+
+.search-result > img {
+  width:40px;
+  height:40px;
+  border-radius:50px;
+}
+
+.search-result:hover {
+  background-color: rgb(228, 225, 225);
+}}
