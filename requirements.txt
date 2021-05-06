@@ -4,3 +4,4 @@ Faker==0.7.3
 dj-static==0.0.6
 django-crispy-forms==1.11.2
 django-allauth==0.44.0
+django-channels==0.7.0
