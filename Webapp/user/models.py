@@ -26,6 +26,16 @@ class UserDetail(models.Model):
     def __str__(self):
         return str(self.username)
 
+# Status Choices for Delivery
+STATUS_CHOICES = (
+    ("1", "Request Sent"), # request sent by sender
+    ("2", "Request Accepted"), # request accepted by delivery boy
+    ("3", "Request Declined"), # request declined
+    ("4", "Delivery Pending"), # parcel picked up and out for delivery
+    ("5", "Delivery Canceled"), # delivery canceled
+    ("6", "Delivered") # parcel successfully delivered
+)
+
 class ParcelDelivery(models.Model):
     username = models.ForeignKey(User, on_delete = models.CASCADE)
     s_full_name = models.CharField(max_length=120)
@@ -46,4 +56,12 @@ class ParcelDelivery(models.Model):
     r_state = models.CharField(max_length=50,null=True)
     r_zip = models.IntegerField(null=True)
     r_country = models.CharField(max_length=50,null=True)
+    weight = models.CharField(max_length=150, null=True)
+    height = models.CharField(max_length=150, null=True)
+    width = models.CharField(max_length=150, null=True)
+    description = models.TextField(null=True)
     time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default=1)
+
+    def __str__(self):
+        return str(self.pk)

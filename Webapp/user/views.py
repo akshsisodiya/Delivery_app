@@ -64,6 +64,10 @@ def send_parcel(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.username = request.user
+            obj.weight = request.POST['weight'] + request.POST['weight_unit']
+            obj.height = request.POST['height'] + request.POST['height_unit']
+            obj.width = request.POST['width'] + request.POST['width_unit']
+            obj.description = request.POST['description'] + request.POST['description']
             obj.save()
             return HttpResponse('success')
     return render(request, 'send_parcel.html', {'form':form, 'detail':detail})

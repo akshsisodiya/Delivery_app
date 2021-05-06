@@ -1,22 +1,25 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import UserDetail,ParcelDelivery
+from .models import UserDetail, ParcelDelivery
+
 
 class CreateUserForm(UserCreationForm):
-    password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    password2 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
     class Meta:
         model = User
-        fields = ['first_name','last_name','username','email','password1','password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
         # fields = ['username']
 
         widgets = {
-            'first_name':forms.TextInput(attrs={'class':'form-control'}),
-            'last_name':forms.TextInput(attrs={'class':'form-control'}),
-            'email':forms.TextInput(attrs={'class':'form-control'}),
-            'username':forms.TextInput(attrs={'class':'form-control'})
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.TextInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'})
         }
+
 
 class SendParcel(forms.ModelForm):
     class Meta:
@@ -26,21 +29,22 @@ class SendParcel(forms.ModelForm):
                   'r_address1', 'r_address2', 'r_city', 'r_state', 'r_zip', 'r_country']
 
         widgets = {
-            's_full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Full name'}),
-            's_number1': forms.NumberInput(attrs={'class': 'form-control', 'placeholder':'Phone number'}),
-            's_address1': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Address line 1'}),
-            's_address2': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Address line 2'}),
-            's_city': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'City'}),
-            's_state': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'State'}),
-            's_zip': forms.NumberInput(attrs={'class': 'form-control', 'placeholder':'Zip or Postal code'}),
-            'r_full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Full name'}),
-            'r_number1': forms.NumberInput(attrs={'class': 'form-control', 'placeholder':'Phone number'}),
-            'r_address1': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Address line 1'}),
-            'r_address2': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Address line 2'}),
-            'r_city': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'City'}),
-            'r_state': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'State'}),
-            'r_zip': forms.NumberInput(attrs={'class': 'form-control', 'placeholder':'Zip or Postal code'}),
+            's_full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full name'}),
+            's_number1': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
+            's_address1': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address line 1'}),
+            's_address2': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address line 2'}),
+            's_city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
+            's_state': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'State'}),
+            's_zip': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Zip or Postal code'}),
+            'r_full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full name'}),
+            'r_number1': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
+            'r_address1': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address line 1'}),
+            'r_address2': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address line 2'}),
+            'r_city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
+            'r_state': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'State'}),
+            'r_zip': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Zip or Postal code'}),
         }
+
 
 class UserDetailsForm(forms.ModelForm):
     class Meta:

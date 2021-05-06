@@ -21,13 +21,13 @@
                 delivery</a>
         </li>
         <li class="nav-item">
-            <a href="{{ panding_delivery }}"
-                class="nav-link {% if request.path == panding_delivery %}active text-light bg-secondary{% else %}text-dark{% endif %}">Panding
+            <a href="{{ pending_delivery }}"
+                class="nav-link {% if request.path == pending_delivery %}active text-light bg-secondary{% else %}text-dark{% endif %}">pending
                 delivery</a>
         </li>
         <li class="nav-item">
-            <a href="{{ panding_requests }}"
-                class="nav-link {% if request.path == panding_requests %}active text-light bg-secondary{% else %}text-dark{% endif %}">Panding
+            <a href="{{ pending_requests }}"
+                class="nav-link {% if request.path == pending_requests %}active text-light bg-secondary{% else %}text-dark{% endif %}">pending
                 requests</a>
         </li>
     </ul>
@@ -47,5 +47,52 @@
     <div class="header bg-dark">
         <button id="sliderCollapse" class="btn btn-white"><i class="fa fa-bars mr-2"></i></button>
     </div>
+    {% if request.path == total_delivery %}{% include 'business/total_delivery.html' %}
+    {% elif page == "order_detail" %}{% include 'business/order_detail.html' %}
+    {% elif request.path == pending_delivery %}{% include 'business/pending_delivery.html' %}
+    {% elif request.path == pending_requests %}{% include 'business/pending_requests.html' %}
+    {% elif request.path == business_search %}{% include 'business/search.html' %}
+    {% elif request.path == business_chat %}{% include 'business/chat.html' %}
+    {% else %}
+    <div class="row p-4">
+        <div class="col-lg-4 p-5">
+            <div class="card">
+                <div class="card-header">
+                    Total Delivery
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        {{ data.total_delivery }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 p-5">
+            <div class="card">
+                <div class="card-header">
+                    Pending Delivery
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        {{ data.pending_delivery }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 p-5">
+            <div class="card">
+                <div class="card-header">
+                    Pending Requests
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        {{ data.pending_requests }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %}

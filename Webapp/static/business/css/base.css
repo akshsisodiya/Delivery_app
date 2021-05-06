@@ -28,6 +28,25 @@
   margin-left: 0;
 }
 
+.form-check-input {
+  padding: 5px;
+  position: absolute;
+  height: 1.3rem;
+  width: 1.3rem;
+  cursor: pointer;
+}
+
+.list-box {
+  cursor: pointer;
+}
+
+.lists {
+  height: 70vh;
+  width: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 @media (max-width: 768px) {
   #sliderCollapse {
     display: initial;

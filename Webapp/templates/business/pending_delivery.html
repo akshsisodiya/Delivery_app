@@ -1,0 +1,104 @@
+<div class="row mt-5 p-5">
+    <div class="col-lg-6" id="pending_collection">
+        <div class="row p-3 list-header">
+            <div class="col-lg-8">
+                <h5>Pending Package Collection</h5>
+            </div>
+            <div class="col-lg-8">
+                <form action="#" method="get">
+                    <div class="input-group">
+                        <input type="text" name="search" id="pending-collction-search" class="form-control"
+                            placeholder="search">
+                    </div>
+                </form>
+            </div>
+            <div class="col-2"><button class="btn btn-success multilist-action" onclick="mass_collect_package()"
+                    disabled>Collect</button></div>
+            <div class="col-2"><button class="btn btn-outline-danger multilist-action"
+                    onclick="mass_collection_cancel_delivery()" disabled>Cancel</button>
+            </div>
+        </div>
+        <div class="lists">
+            {% for order in data_collection %}
+            <div class="mb-4 p-4" style="position: relative;">
+                <input type="checkbox" class="form-check-input pending-collection-list-checkbox" onchange=""
+                    name="checkbox_{{order.pk}}" id="{{order.pk}}">
+                <div class="row border list-box rounded p-2 list-{{order.pk}}" id='list-{{order.pk}}'>
+                    <div class="col-lg-4 p-2">
+                        <p class="text-muted m-0">#{{ order.pk}}</p>
+                        <h5>{{ order.fields.s_full_name }}</h3>
+                            <h6>{{ order.fields.s_number1}}</h6>
+                    </div>
+                    <div class="col-lg-5 p-2 my-auto">
+                        <p class="m-0">From:
+                            {{ order.fields.s_address1 }},{{ order.fields.s_address2}},{{order.fields.s_city}}.
+                        </p>
+                        <p class="m-0">To:
+                            {{ order.fields.r_address1}},{{ order.fields.r_address2}},{{order.fields.r_city}}.
+                        </p>
+                    </div>
+                    <div class="col-lg-3 p-2 btn-grp my-auto">
+                        <button class="btn btn-success mb-2" onclick="package_collected({{order.pk}})">Collect
+                            Package</button>
+                        <button class="btn btn-outline-danger" onclick="cancel_delivery({{order.pk}})">Cancel
+                            Delivery</button>
+                        <h3 class='collected text-success d-none'>Package Collected</h3>
+                        <h3 class='canceled text-danger d-none'>Delivery Canceled</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-lg-6" id="pending_delivery">
+        <div class="row p-3 list-header">
+            <div class="col-lg-8">
+                <h5>Pending Delivery</h5>
+            </div>
+            <div class="col-lg-8">
+                <form action="#" method="get">
+                    <div class="input-group">
+                        <input type="text" name="search" id="pending-delivery-search" class="form-control"
+                            placeholder="search">
+                    </div>
+                </form>
+            </div>
+            <div class="col-2"><button class="btn btn-success multilist-action" onclick="mass_delivered()"
+                    disabled>Delivered</button></div>
+            <div class="col-2"><button class="btn btn-outline-danger multilist-action"
+                    onclick="mass_delivery_cancel_delivery()" disabled>Cancel</button>
+            </div>
+        </div>
+        <div class="lists">
+            {% for order in data_delivery %}
+            <div class="mb-4 p-4" style="position: relative;">
+                <input type="checkbox" class="form-check-input pending-delivery-list-checkbox" onchange=""
+                    name="checkbox_{{order.pk}}" id="{{order.pk}}">
+                <div class="row border list-box rounded p-2 list-{{order.pk}}" id='list-{{order.pk}}'>
+                    <div class="col-lg-4 p-2">
+                        <p class="text-muted m-0">#{{ order.pk}}</p>
+                        <h5>{{ order.fields.s_full_name }}</h3>
+                            <h6>{{ order.fields.s_number1}}</h6>
+                    </div>
+                    <div class="col-lg-5 p-2 my-auto">
+                        <p class="m-0">From:
+                            {{ order.fields.s_address1 }},{{ order.fields.s_address2}},{{order.fields.s_city}}.
+                        </p>
+                        <p class="m-0">To:
+                            {{ order.fields.r_address1}},{{ order.fields.r_address2}},{{order.fields.r_city}}.
+                        </p>
+                    </div>
+                    <div class="col-lg-3 p-2 btn-grp my-auto">
+                        <button class="btn btn-success mb-2" onclick="delivered({{order.pk}})">Package
+                            Delivered</button>
+                        <button class="btn btn-outline-danger" onclick="cancel_delivery({{order.pk}})">Cancel
+                            Delivery</button>
+                        <h3 class='delivered text-success d-none'>Package Delivered</h3>
+                        <h3 class='canceled text-danger d-none'>Delivery Canceled</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

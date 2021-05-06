@@ -1,0 +1,96 @@
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'business/css/order_detail.css' %}">
+{% endblock %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 detail-card">
+        <div class="detail-header">
+            <div class="detail-header-left">
+                <h6 class="text-muted">Order No.: #{{ detail.pk }}</h6>
+            </div>
+            <div class="detail-header-center">
+                <h3>Detail</h3>
+            </div>
+            <div class="detail-header-right">
+                <h6 class="text-primary">Status:
+                    {% if detail.status == "1" %}Request Pending
+                    {% elif detail.status == "2"%}Collection Pending
+                    {% elif detail.status == "3" %}Request Declined
+                    {% elif detail.status == "4" %}Delivery Pending
+                    {% elif detail.status == "5"%}Delivery Canceled
+                    {% else %}Delivered
+                    {%endif%}
+                </h6>
+            </div>
+        </div>
+        <div class="detail-content">
+            <div class="detail-content-from">
+                <p class="text-muted">From:</p>
+                <h4 class="fullname">{{ detail.s_full_name }}</h4>
+                <h4 class="address">{{ detail.s_address1}},
+                    {{ detail.s_address2}},{{ detail.s_city}},{{ detail.s_state}},
+                    {{ detail.s_country }}-{{ detail.s_zip}}.
+                </h4>
+                <h4 class="number">{{detail.s_number1}}{% if detail.s_number2 != None %}, {{detail.s_number2}}{%endif%}
+                </h4>
+            </div>
+            <div class="detail-content-to">
+                <p class="text-muted">To:</p>
+                <h4 class="fullname">{{ detail.r_full_name }}</h4>
+                <h4 class="address">{{ detail.r_address1}},
+                    {{ detail.r_address2}},{{ detail.r_city}},{{ detail.r_state}},
+                    {{ detail.r_country }}-{{ detail.r_zip}}.
+                </h4>
+                <h4 class="number">{{detail.r_number1}}{% if detail.r_number2 != None %},{{detail.r_number2}}{%endif%}
+                </h4>
+            </div>
+            <div class="detail-content-package">
+                <div class="detail-content-package-left">
+                    <p class="text-muted">Package Detail:</p>
+                    <h4 class="weight">Weight: {{ detail.weight }}</h4>
+                    <h4 class="height">Height: {{ detail.height }}</h4>
+                    <h4 class="width">Width: {{ detail.width }}</h4>
+                    <p class="description"><strong>Description: </strong>{{detail.description}}</p>
+                </div>
+                <div class="detail-content-package-right">
+                    <div class="detail-content-package-img">
+                        <img src="https://i2-prod.essexlive.news/incoming/article4066789.ece/ALTERNATES/s1200c/1_My-box-of-essnetial-items-as-it-arrived-on-my-front-doorstep.jpg"
+                            alt="" id="myImg">
+                    </div>
+                    <div id="myModal" class="modal">
+
+                        <!-- The Close Button -->
+                        <span class="close">&times;</span>
+
+                        <!-- Modal Content (The Image) -->
+                        <img class="modal-content" id="img01">
+
+                        <!-- Modal Caption (Image Text) -->
+                        <div id="caption"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="detail-bottom">
+            {% if detail.status == "1" %}
+            <button class="btn btn-success" onclick="request_accept({{ detail.pk }})">Accept</button>
+            <button class="btn btn-outline-danger" onclick="request_decline({{ detail.pk }})">Decline</button>
+
+            {% elif detail.status == "2" %}
+            <button class="btn btn-success" onclick="package_collected({{ detail.pk}})">Collect Package</button>
+            {% elif detail.status == "3" %}
+            <h5 class="text-danger">Request has been declined</h5>
+            {% elif detail.status == "4" %}
+            <button class="btn btn-success" onclick="delivered({{ detail.pk }})">Delivered</button>
+            <button class="btn btn-outline-danger" onclick="cancel_delivery({{ detail.pk }})">Delivered</button>
+            {% elif detail.status == "5" %}
+            <h5 class="text-danger">Delivery has been cancled</h5>
+            {% else %}
+            <h5 class="text-success">Package has been delivered</h5>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% block footer %}
+<script src="{% static 'business/js/order_detail.js' %}"></script>
+{% endblock %}

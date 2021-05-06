@@ -1,0 +1,42 @@
+<div class="row mt-5 p-5">
+    <div class="col-lg-6">
+        <div class="row p-3 list-header">
+            <div class="col-lg-8">
+                <h5>Package Delivered</h5>
+            </div>
+            <div class="col-lg-8">
+                <form action="#" method="get">
+                    <div class="input-group">
+                        <input type="text" name="search" id="delivered-search" class="form-control"
+                            placeholder="search">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="lists">
+            {% for order in data%}
+            <div class="mb-4 p-4" style="position: relative;">
+                <div class="row border list-box rounded p-2 list-{{order.pk}}" id='list-{{order.pk}}'>
+                    <div class="col-lg-4 p-2">
+                        <p class="text-muted m-0">#{{ order.pk}}</p>
+                        <h5>{{ order.fields.s_full_name }}</h3>
+                            <h6>{{ order.fields.s_number1}}</h6>
+                    </div>
+                    <div class="col-lg-5 p-2 my-auto">
+                        <p class="m-0">From:
+                            {{ order.fields.s_address1 }},{{ order.fields.s_address2}},{{order.fields.s_city}}.
+                        </p>
+                        <p class="m-0">To:
+                            {{ order.fields.r_address1}},{{ order.fields.r_address2}},{{order.fields.r_city}}.
+                        </p>
+                    </div>
+                    <div class="col-lg-3 p-2 btn-grp my-auto">
+                        <h5>Delivered on
+                            19-04-2021 12:52 PM</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
