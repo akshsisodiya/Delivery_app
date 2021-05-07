@@ -8,8 +8,8 @@
     <list default="true" id="6c2b2959-f951-443b-ac26-0c1b42a3d63d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Webapp/Webapp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Webapp/Webapp/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +265,7 @@
       <workItem from="1619275164216" duration="65000" />
       <workItem from="1619275422526" duration="42000" />
       <workItem from="1620279607041" duration="24620000" />
-      <workItem from="1620393573718" duration="1307000" />
+      <workItem from="1620393573718" duration="2220000" />
     </task>
     <task id="LOCAL-00001" summary="create project">
       <created>1600780044499</created>
