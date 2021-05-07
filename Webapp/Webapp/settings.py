@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'channels',
+    'Webapp.user',
+    'Webapp.business',
 ]
 
 SITE_ID = 2
