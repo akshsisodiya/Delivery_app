@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',
-    'crispy_forms',    
+    'crispy_forms',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     'panchayat',
     'business',
     'channels',
+    'user',
 ]
 
 SITE_ID = 2
