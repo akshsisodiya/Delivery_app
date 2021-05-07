@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from .forms import CreateUserForm,UserDetailsForm, SendParcel
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import login,logout
-from .models import UserDetail, Friend
+from .models import UserDetail, Friend, ParcelDelivery
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
@@ -19,7 +19,12 @@ def index(request):
 @login_required(login_url='/user/login')
 def profile(request):
     details = UserDetail.objects.get(username = request.user)
-    return render(request, 'user_profile.html', {'detail':details})
+    order_detail_obj = ParcelDelivery.Details(request.user)
+    total_orders = order_detail_obj.all_orders_details(3)
+    active_orders = order_detail_obj.active_orders_details(3)
+    delivered_orders = order_detail_obj.delivered_orders_details(3)
+    return render(request, 'user_profile.html', {'detail':details, 'total_orders':total_orders,
+                                                 'active_orders':active_orders, 'previous_orders':delivered_orders})
 
 @login_required(login_url='/user/login')
 def edit_profile(request):
@@ -55,6 +60,11 @@ def edit_profile(request):
             return redirect('profile')
     return render(request,'edit_profile.html', {'details' : details})
 
+def track_delivery(request):
+    orders = ParcelDelivery.Details(request.user)
+    details = orders.search(request)
+    return render(request, 'order_lists.html', {'details' : details})
+
 @login_required(login_url='/user/login')
 def send_parcel(request):
     form = SendParcel
@@ -66,7 +76,7 @@ def send_parcel(request):
             obj.username = request.user
             obj.weight = request.POST['weight'] + request.POST['weight_unit']
             obj.height = request.POST['height'] + request.POST['height_unit']
-            obj.width = request.POST['width'] + request.POST['width_unit']
+            obj.width = request.POST['width'] + request.POST['size_unit']
             obj.description = request.POST['description'] + request.POST['description']
             obj.save()
             return HttpResponse('success')

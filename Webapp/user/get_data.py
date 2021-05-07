@@ -1,3 +1,5 @@
+from .models import ParcelDelivery
+
 class CardView:
     def __init__(self,title,img,link,description):
         self.title=title

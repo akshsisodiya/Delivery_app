@@ -59,11 +59,11 @@
       <div class="row text-center">
         <div class="col-4 border-right">
           <div class="card-title h5">Active Order</div>
-          <div class="card-subtitle">6</div>
+          <div class="card-subtitle">{{ active_orders.count }}</div>
         </div>
         <div class="col-4 border-right">
           <div class="card-title h5">Total Order</div>
-          <div class="card-subtitle">9</div>
+          <div class="card-subtitle">{{ total_orders.count }}</div>
         </div>
         <div class="col-4">
           <div class="card-title h5">Friends</div>
@@ -91,6 +91,78 @@
               <p class="h6">Address not available</p>
             {% endif %}
           {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="bg-dark text-white p-3 w-100 h4 border rounded">Your Orders:</div>
+    <div class="col-lg-6 p-3">
+      <div class="p-2">
+          <div class="h5 border-bottom border-secondary text-danger w-100 py-2 d-flex justify-content-between"><div>Active Orders</div><div>Count: {{ active_orders.count }}</div></div>
+          <div class="row">
+            <div class="col-lg-12">
+                {% for order in active_orders.orders %}
+              <div class="border border-secondary mb-2 p-2 row">
+                <div class="col-lg-8">
+                  <div class="text-muted">#{{order.pk}}</div>
+                  <div class="h6">{{ order.fields.r_full_name}}</div>
+                  <div>{{ order.fields.r_number1}}</div>
+                  <p>{{ order.fields.r_address1 }}, {{ order.fields.r_address2 }}, {{ order.fields.r_city }}, {{ order.fields.r_state }}.</p>
+                </div>
+                <div class="col-lg-4">
+                  <div class="h6">Status</div>
+                  {% if order.fields.status == '1' %}
+                  <div class="h4 text-primary">Request Sent</div>
+                  {% elif order.fields.status == '2' %}
+                  <div class="h4 text-primary">Collection Pending</div>
+                  {% elif order.fields.status == '4' %}
+                  <div class="h4 text-primary">Out for delivery</div>
+                  {% elif order.fields.status == '5' %}
+                  <div class="h4 text-danger">Delivery Canceled</div>
+                  {% elif order.fields.status == '6' %}
+                  <div class="h4 text-success">Delivered</div>
+                  {% endif %}
+                </div>
+              </div>
+                {% endfor %}
+              <a href="/user/all-active-orders" class="text-decoration-none"><div class="text-center h6 text-danger">View More</div></a>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-6 p-3">
+      <div class="p-2">
+        <div class="h5 border-bottom border-secondary text-danger w-100 py-2 d-flex justify-content-between"><div>Previous Orders</div><div>Count: {{ previous_orders.count }}</div></div>
+        <div class="row">
+          <div class="col-lg-12">
+            {% for order in previous_orders.orders %}
+            <div class="border border-secondary mb-2 p-2 row">
+              <div class="col-lg-8">
+                <div class="text-muted">#{{order.pk}}</div>
+                <div class="h6">{{ order.fields.r_full_name}}</div>
+                <div>{{ order.fields.r_number1}}</div>
+                <p>{{ order.fields.r_address1 }}, {{ order.fields.r_address2 }}, {{ order.fields.r_city }}, {{ order.fields.r_state }}.</p>
+              </div>
+              <div class="col-lg-4">
+                <div class="h6">Status</div>
+                {% if order.fields.status == '1' %}
+                <div class="h4 text-primary">Request Sent</div>
+                {% elif order.fields.status == '2' %}
+                <div class="h4 text-primary">Collection Pending</div>
+                {% elif order.fields.status == '4' %}
+                <div class="h4 text-primary">Out for delivery</div>
+                {% elif order.fields.status == '5' %}
+                <div class="h4 text-danger">Delivery Canceled</div>
+                {% elif order.fields.status == '6' %}
+                <div class="h4 text-success">Delivered</div>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+            <a href="/user/all-previous-orders" class="text-decoration-none"><div class="text-center h6 text-danger">View More</div></a>
+          </div>
         </div>
       </div>
     </div>
