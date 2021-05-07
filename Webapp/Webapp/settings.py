@@ -63,7 +63,7 @@ MIDDLEWARE = [
 
 CRISPY_TEMPLATE_PACK ="bootstrap3"
 
-ROOT_URLCONF = 'Webapp.urls'
+ROOT_URLCONF = 'Webapp.Webapp.urls'
 
 LOGIN_REDIRECT_URL = '/user/'
 
